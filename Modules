@@ -1,0 +1,115 @@
+Here's a simplified diagram of Kubernetes architecture:
+
+Master Node:
+
+Contains the main components that manage the cluster:
+API Server: The main entry point for all administrative tasks.
+Scheduler: Assigns workloads to specific nodes.
+Controller Manager: Maintains the desired state of the cluster.
+etcd: Stores all cluster data as a key-value store.
+Worker Nodes:
+
+Each worker node runs application workloads:
+Pods: The smallest deployable units in Kubernetes, which run one or more containers.
+Containers: Encapsulate the application code and dependencies.
+Service: An abstraction that defines a logical set of Pods and a policy by which to access them.
+
+ConfigMap/Secret: Used to manage configuration data and sensitive information separately from the application code.
+
+This diagram shows how the Master Node controls and manages the cluster, while the Worker Nodes run the actual application components. Services and ConfigMaps help manage application interactions and configurations. ​​
+
+kubernetes architecture
+
+ChatGPT
+Kubernetes architecture is designed to provide a highly available, scalable, and resilient environment for deploying, managing, and scaling containerized applications. Here’s an overview of its key components and how they interact:
+
+Key Components of Kubernetes Architecture
+Master Node:
+
+Responsible for managing the Kubernetes cluster and orchestrating the various components.
+API Server:
+The central management entity that exposes the Kubernetes API.
+Acts as the front end of the Kubernetes control plane.
+etcd:
+A consistent and highly available key-value store used as Kubernetes' backing store for all cluster data.
+Stores the configuration data and the state of the cluster.
+Scheduler:
+Assigns workloads (Pods) to specific nodes based on resource availability and other constraints.
+Controller Manager:
+Runs controller processes to regulate the state of the cluster.
+Includes various controllers like the Replication Controller, Endpoint Controller, and Node Controller.
+Worker Nodes:
+
+Run the containerized applications and handle the actual workload.
+Kubelet:
+An agent that runs on each worker node and ensures that containers are running in a Pod.
+Communicates with the API Server to receive and execute instructions.
+Kube-proxy:
+Manages network connectivity and load balancing for services on a node.
+Maintains network rules and allows communication between Pods.
+Container Runtime:
+The software that is responsible for running the containers.
+Examples include Docker, containerd, and CRI-O.
+Pods:
+
+The smallest and simplest Kubernetes object that can be created or managed.
+Represents a single instance of a running process in the cluster.
+Can contain one or more containers that share storage, network, and a specification for how to run the containers.
+Services:
+
+An abstraction that defines a logical set of Pods and a policy by which to access them.
+Enables decoupling between the network identity and the actual workload.
+ConfigMaps and Secrets:
+
+ConfigMap: Stores configuration data in key-value pairs.
+Secret: Stores sensitive data, such as passwords, tokens, and keys.
+High-Level Diagram of Kubernetes Architecture
+Here's a simplified representation of Kubernetes architecture:
+
+Master Node:
+
+API Server
+Scheduler
+Controller Manager
+etcd
+Worker Nodes:
+
+Kubelet
+Kube-proxy
+Container Runtime
+Pods (running on Worker Nodes)
+
+Containers
+Services and Configurations:
+
+Services
+ConfigMaps and Secrets
+Interaction and Workflow
+API Server:
+
+Users interact with the Kubernetes cluster through the API Server using kubectl commands or API calls.
+The API Server validates and processes the requests.
+Scheduler:
+
+Watches for newly created Pods that have no assigned node.
+Selects a node for them based on resource requirements and scheduling policies.
+Controller Manager:
+
+Monitors the state of the cluster through the API Server.
+Makes necessary changes to maintain the desired state, such as scaling applications or handling node failures.
+etcd:
+
+Stores the state of all cluster components persistently.
+Provides consistency across the cluster.
+Worker Nodes:
+
+Kubelet on each worker node receives instructions from the API Server to run containers in Pods.
+Kube-proxy ensures that networking rules are applied, allowing communication between Pods and Services.
+Pods and Containers:
+
+Pods encapsulate containers, allowing them to share resources.
+Containers run the application workloads.
+Services and Configurations:
+
+Services provide a stable endpoint for accessing Pods.
+ConfigMaps and Secrets manage application configuration and sensitive information securely.
